@@ -19,6 +19,7 @@
 // (Later, think about whether you need both.)
 
 let isGoing    = false;
+let guestLine = 'flying solo.'
 //let isNotGoing = false;
 
 
@@ -73,8 +74,7 @@ btnYes.addEventListener('click', () => {
   guestField.classList.remove('hidden');
   confirmation.classList.remove('hidden');
   regret.classList.add('hidden');
-
-//call updateconfirm
+  updateConfirmation();
 
 });
 
@@ -94,7 +94,7 @@ btnNo.addEventListener('click', () => {
   guestField.classList.add('hidden');
   regret.classList.remove('hidden');
   confirmation.classList.add('hidden');
-  regret.textContent = getName() + " is not coming lol";
+  updateRejection();
 
 
 });
@@ -117,12 +117,26 @@ btnNo.addEventListener('click', () => {
 const updateConfirmation = () => {
   const guests = getGuests();
 
+  if (guests==0){
+    guestLine = 'flying solo';
+  }else if (guests ==1){
+    guestLine = `coming bringing ${guests} guest.`;
+  }else{
+    guestLine = `coming bringing ${guests} guests.`;
+  }
+
+  confirmation.textContent = `${getName()} is ${guestLine}`;
+
   // YOUR CODE HERE: build guestLine based on guests value
 
 
   // YOUR CODE HERE: set confirmation.textContent using a template literal
   // Example shape: `${getName()} is coming — ${guestLine}`
 
+};
+
+const updateRejection = () => {
+  regret.textContent = `${getName()} is not coming.`;
 };
 
 
@@ -136,15 +150,20 @@ const updateConfirmation = () => {
 
 nameInput.addEventListener('input', () => {
 
-  // YOUR CODE HERE
+  if(isGoing==true){
+    updateConfirmation();
+  }else{
+    updateRejection();
+  }
 
 
 });
 
 guestInput.addEventListener('input', () => {
 
-  // YOUR CODE HERE
-
+  if(isGoing==true){
+    updateConfirmation();
+  }
 
 });
 
@@ -156,7 +175,7 @@ guestInput.addEventListener('input', () => {
 const checkStatus = () => {
   console.log('=== current state ===');
   console.log('isGoing:    ', isGoing);
-  console.log('isNotGoing: ', isNotGoing);
+  //console.log('isNotGoing: ', isNotGoing);
   console.log('name:       ', nameInput.value);
   console.log('guests:     ', getGuests(), '(type:', typeof getGuests(), ')');
   console.log('raw value:  ', guestInput.value, '(type:', typeof guestInput.value, ')');
