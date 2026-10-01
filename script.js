@@ -34,8 +34,8 @@ const guestField   = document.querySelector('#guest-field');
 // Try getting the yes, no, confirmation and regret elements from the html.
 const btnYes       = document.querySelector('#btn-yes');
 const btnNo        = document.querySelector('#btn-no');
-// const confirmation = ;
-// const regret       = ;
+const confirmation = document.querySelector('#confirmation');
+const regret       = document.querySelector('#regret');
 
 
 // ── 3. HELPERS: small functions that do one thing ───────────
@@ -68,9 +68,13 @@ const getGuests = () => Number(guestInput.value);
 btnYes.addEventListener('click', () => {
 
   isGoing = true;
-  btnYes.add('active');
+  btnYes.classList.add('active');
+  btnNo.classList.remove('active');
+  guestField.classList.remove('hidden');
+  confirmation.classList.remove('hidden');
+  regret.classList.add('hidden');
 
-
+//call updateconfirm
 
 });
 
@@ -84,7 +88,13 @@ btnYes.addEventListener('click', () => {
 
 btnNo.addEventListener('click', () => {
 
-  // YOUR CODE HERE
+  isGoing = false;
+  btnNo.classList.add('active');
+  btnYes.classList.remove('active');
+  guestField.classList.add('hidden');
+  regret.classList.remove('hidden');
+  confirmation.classList.add('hidden');
+  regret.textContent = getName() + " is not coming lol";
 
 
 });

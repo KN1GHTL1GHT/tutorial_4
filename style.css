@@ -181,6 +181,7 @@ input:focus {
     border-radius: var(--radius-sm);
     padding: var(--space-md);
     font-size: 0.95rem;
+    text-align: center;
 }
 
 /* ── utility ─────────────────────────────────────────── */
