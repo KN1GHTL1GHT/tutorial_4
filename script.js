@@ -19,7 +19,7 @@
 // (Later, think about whether you need both.)
 
 let isGoing    = false;
-let isNotGoing = false;
+//let isNotGoing = false;
 
 
 // ── 2. ELEMENTS: find everything we'll need ─────────────────
@@ -32,8 +32,8 @@ const guestInput   = document.querySelector('#guest-input');
 const guestField   = document.querySelector('#guest-field');
 
 // Try getting the yes, no, confirmation and regret elements from the html.
-// const btnYes       = ;
-// const btnNo        = ;
+const btnYes       = document.querySelector('#btn-yes');
+const btnNo        = document.querySelector('#btn-no');
 // const confirmation = ;
 // const regret       = ;
 
@@ -67,7 +67,9 @@ const getGuests = () => Number(guestInput.value);
 
 btnYes.addEventListener('click', () => {
 
-  // YOUR CODE HERE
+  isGoing = true;
+  btnYes.add('active');
+
 
 
 });
